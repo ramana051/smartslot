@@ -249,7 +249,7 @@ const loginAdmin = async (req, res) => {
     }
 
     const user = await User.findOne({ where: { email: String(email).trim().toLowerCase() } });
-    if (user && (await bcrypt.compare(password, user.password))) {
+    if (user && (await (password, user.password))) {
       if (user.role !== 'admin') {
         return res.status(403).json({ message: 'Administrator access only' });
       }
